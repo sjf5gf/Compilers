@@ -1,0 +1,24 @@
+turn -45;
+turn 45;
+go 50;
+jump 34;
+ME = 18;
+for ME = 22
+	step 1
+	to 4
+	do go 100;
+SUM = 5+4;
+SUB = 99-4;
+MULT = 3*7;
+DIV = 9/3;
+TEST = cos(-2);
+TESTB = cos(+2);
+TESTC = sin(3);
+TESTD = sqrt(88);
+TESTE = 5+(3*4);
+begin sum; jump 81; turn 180; turn -40; go 54; end
+NUMA = 22.7;
+NUMB = 2.88;
+NUMC = 03.14;
+
+
