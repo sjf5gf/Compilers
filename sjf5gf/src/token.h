@@ -27,13 +27,16 @@
 #define LESSTHAN 282
 #define GREATERTHAN 283
 #define EQUAL 284
-#define WHILE 285
-#define IF 286
-#define ELSE 287
-#define OPENBRACKET 288
-#define CLOSEBRACKET 289
+#define IF 285
+#define ELSE 286
+#define OPENBRACKET 287
+#define CLOSEBRACKET 288
+#define WHILE 289
+#define LEQ 290
+#define GEQ 291
+#define THEN 292
 typedef union YYSTYPE
 { int i; node *n; double d;}
         YYSTYPE;
-YYSTYPE yylval;
+extern YYSTYPE yylval;
 
