@@ -1,0 +1,11 @@
+VAR myvar;
+myvar=20;
+PROCEDURE b(myvar){
+myvar+1;
+}
+CALL b(myvar);
+PROCEDURE a(level,dist){
+TURN -45; 
+a(level-1, dist);
+TURN 90;
+}

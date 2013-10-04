@@ -1,0 +1,6 @@
+VAR myvar;
+myvar=3;
+WHILE (myvar==0){
+JUMP 5;
+GO 3;
+}

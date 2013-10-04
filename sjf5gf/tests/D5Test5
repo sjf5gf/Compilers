@@ -1,0 +1,7 @@
+VAR myvar;
+myvar = -9;
+PROCEDURE myvar myvar=-9;
+CALL myvar(5);
+VAR a;
+PROCEDURE a myvar+8.7;
+CALL a(2);

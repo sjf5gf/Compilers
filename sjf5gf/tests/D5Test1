@@ -1,0 +1,23 @@
+VAR myvar;
+myvar=0;
+IF(myvar>=7) THEN {
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+GO 40;
+TURN 90;
+}
+IF(myvar<=0) THEN{
+JUMP 10;
+}
+ELSE{
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+GO 30;
+TURN 120;
+}
