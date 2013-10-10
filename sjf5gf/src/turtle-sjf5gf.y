@@ -37,7 +37,7 @@ decl: VAR ID SEMICOLON { printf("/tlt%s 0 def\n",$2->symbol);} ;
 stmtlist: ;
 stmtlist: stmtlist stmt ;
 
-stmt: ID ASSIGN expr SEMICOLON {printf("/tlt%s exch store\n",$1->symbol);} ;
+stmt: ID ASSIGN expr SEMICOLON {printf("/tlt%s exch store\n",$1->symbol);};
 stmt: GO expr SEMICOLON {printf("0 rlineto\n");};
 stmt: JUMP expr SEMICOLON {printf("0 rmoveto\n");};
 stmt: TURN expr SEMICOLON {printf("rotate\n");};
@@ -47,7 +47,7 @@ stmt: ID {printf("tlt%s ",$1->symbol);} GREATERTHAN expr {printf("gt\n",$1->symb
 stmt: VAR GREATERTHAN expr {printf("gt\n");};
 stmt: ID {printf("tlt%s ",$1->symbol);} EQUAL expr {printf("eq\n",$1->symbol);};
 stmt: VAR EQUAL expr {printf("eq\n");};
-stmt: ID ASSIGN expr;
+stmt: ID ASSIGN expr SEMICOLON {printf("/tlt%s exch store\n",$1->symbol);};
 stmt: VAR ASSIGN expr;
 stmt: ID {printf("tlt%s ",$1->symbol);} LEQ expr {printf("le\n",$1->symbol);};
 stmt: VAR LEQ expr {printf("le\n");};
@@ -84,10 +84,11 @@ atomic: NUMBER {printf("%d ",$1);};
 atomic: FLOAT {printf("%f ",$1);};
 atomic: ID {printf("tlt%s ", $1->symbol);};
 
-stmt: WHILE  OPEN {printf("{ ");} stmt {printf("{} {exit} ifelse\n");} CLOSE OPENBRACKET stmtlist CLOSEBRACKET {printf("} loop\n");};
+stmt: WHILE OPEN {printf("{ ");} stmt {printf("{} {exit} ifelse\n");} CLOSE OPENBRACKET stmtlist CLOSEBRACKET {printf("} loop\n");};
 
-stmt: IF OPEN stmt {printf("{ ");} CLOSE THEN OPENBRACKET stmtlist CLOSEBRACKET {printf("} if \n");};
-stmt: ELSE OPENBRACKET {printf("{ ");} stmtlist CLOSEBRACKET {printf("} ifelse\n");};
+stmt: IF OPEN stmt {printf("{ ");} CLOSE THEN OPENBRACKET stmtlist CLOSEBRACKET {printf("} ");} newstmt;
+newstmt: ELSE OPENBRACKET {printf("{ ");} stmtlist CLOSEBRACKET {printf("} ifelse\n");};
+newstmt: {printf("if\n");};
 
 %%
 int yyerror(char *msg)
