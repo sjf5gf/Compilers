@@ -1,0 +1,12 @@
+VAR myvar;
+
+myvar = 5;
+
+IF (VAR == 5) THEN
+{
+  GO 40;
+  TURN 90;
+  GO 40;
+  TURN -90;
+  GO 40;
+} 

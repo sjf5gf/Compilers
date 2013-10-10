@@ -1,0 +1,18 @@
+VAR myvar;
+
+myvar = 4;
+
+// should draw a funky ladder
+WHILE (myvar < 10)
+{
+  IF (myvar < 10) THEN
+  {
+    GO 20;
+    TURN 90;
+    GO 20;
+    TURN -90;
+    GO 20;
+    myvar = myvar + 1;
+  }
+}
+

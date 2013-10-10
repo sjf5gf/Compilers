@@ -1,0 +1,8 @@
+ELSE
+{
+  GO 40;
+  TURN 90;
+  GO 40;
+  TURN -90;
+  GO 40;
+} 
