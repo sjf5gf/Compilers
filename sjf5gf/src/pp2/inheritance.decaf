@@ -1,0 +1,43 @@
+class Cow extends Animal {
+  bool isSpotted;
+  void InitCow(int h, Animal m, bool spot) {
+    isSpotted = spot;
+    InitAnimal(h,m);
+  }
+  bool IsSpottedCow() {
+    return isSpotted;
+  }
+}
+
+class Animal {
+  int height;
+  Animal mother;
+  void InitAnimal(int h, Animal mom) {
+    height = h;
+    mother = mom;
+  }
+
+  int GetHeight() {	
+    return height;
+  }
+
+  Animal GetMom() {
+    return mother;
+  }
+}
+
+
+
+
+void main() {
+  Cow betsy;
+  Animal b;
+  betsy = New(Cow);
+  
+  betsy.InitCow(5, null, true);
+  b = betsy;
+  b.GetMom();
+}
+      
+
+
