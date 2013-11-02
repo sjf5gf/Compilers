@@ -1,1 +1,6 @@
-Solutions for PP2
+Stephen Feldman (sjf5gf)
+
+-I struggled with this assignment (pp3)!
+-Everything compiles, but the semantic checking (Node::Check()) doesn't work - I guess my symbol tables were not properly implemented.
+-I saw Wei Wang in Office Hours several times.
+-I think I understand symbol tables conceptually/intuitively, but implementation is difficult.
