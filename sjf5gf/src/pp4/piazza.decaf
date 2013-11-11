@@ -1,0 +1,14 @@
+function printName(Student st){
+	printLine(st.name);
+}
+
+class Student implements Person{
+	string name;
+	void printMoto(){
+		printLine("Be Happy");	
+	}
+}
+
+interface Person{
+	void printMoto();
+}

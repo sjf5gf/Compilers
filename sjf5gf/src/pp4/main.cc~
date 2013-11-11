@@ -10,6 +10,7 @@
 #include "parser.h"
 #include "hashtable.h"
 #include "ast_decl.h"
+Hashtable<Identifier*> *iTable = new Hashtable<Identifier*>;
 Hashtable<Decl*> *memTable = new Hashtable<Decl*>;
 Hashtable<Type*> *typesTable = new Hashtable<Type*>;
 Hashtable<Expr*> *exprTable = new Hashtable<Expr*>;

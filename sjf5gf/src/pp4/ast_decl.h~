@@ -82,7 +82,6 @@ class FnDecl : public Decl
     const char *GetPrintNameForNode() { return "FnDecl"; }
     void PrintChildren(int indentLevel);
     void BuildChildren();
-    void Check1();
 };
 
 #endif

@@ -63,19 +63,7 @@ void StmtBlock::BuildChildren() {
 }
 
 void StmtBlock::Check1() {
-	Iterator<Node*> iter = this->dino->table->GetIterator();
-	Decl* decl;
-	int count = 1;
-	while((decl = dynamic_cast<Decl *>(iter.GetNextValue())) != NULL){
-		Decl* decl2;
-		Iterator<Node*> iter2 = this->dino->table->GetIterator();
-		for(int a = 0; a < count; a++){decl2 = dynamic_cast<Decl *>(iter2.GetNextValue());}
-		while((decl2 = dynamic_cast<Decl *>(iter2.GetNextValue())) != NULL){
-			string s1(decl->id->name);  string s2 (decl2->id->name);			
-			if((s1).compare(s2) == 0) ReportError::DeclConflict(decl, decl2);
-		}
-	count++;	
-	}
+
 }
 
 ConditionalStmt::ConditionalStmt(Expr *t, Stmt *b) { 

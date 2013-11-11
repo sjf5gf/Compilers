@@ -74,7 +74,7 @@ void ClassDecl::Check1(){
 			Decl* decl2;
 			Iterator<Decl*> iter2 = this->GetParent()->dino->table->Lookup(this->extends->id->name)->dino->table2->GetIterator();
 			for(int a = 0; a < count; a++){decl2 = iter2.GetNextValue();}
-			while((decl2 = iter2.GetNextValue()) != NULL){
+			while((decl2 = dynamic_cast<Decl *>(iter2.GetNextValue())) != NULL){
 				string s1(decl->id->name);  string s2 (decl2->id->name);			
 				if((s1).compare(s2) == 0) ReportError::DeclConflict(decl, decl2);
 			}

@@ -52,7 +52,6 @@ class StmtBlock : public Stmt
     const char *GetPrintNameForNode() { return "StmtBlock"; }
     void PrintChildren(int indentLevel);
     void BuildChildren();
-    void Check1();
 };
 
   

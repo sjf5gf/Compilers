@@ -109,7 +109,7 @@ template<class Element> class List {
     }
 }
 
-  void BuildScope2(Scope *scope){
+  void BuildScope(Scope *scope){
     for (int i = 0; i < NumElements(); i++){
       scope->table2->Enter(Nth(i)->id->name, Nth(i), false);
       Nth(i)->Build();

@@ -92,7 +92,7 @@ void ReportError::OverrideMismatch(Decl *fnDecl) {
 
 void ReportError::InterfaceNotImplemented(Decl *cd, Decl *decl) {
     stringstream s;
-    s << "Class '" << cd->id->name << "' does not implement entire interface '" << decl->id->name << "'";
+    s << "Class '" << cd << "' does not implement entire interface '" << decl->id->name << "'";
     OutputError(decl->GetLocation(), s.str());
 }
 

@@ -67,6 +67,5 @@ void Identifier::BuildChildren() {
 
 Scope::Scope(Node *me){
 	table = new Hashtable<Node*>;
-	table2 = new Hashtable<Decl*>;
 	Node *backPointer = me;
 }

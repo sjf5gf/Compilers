@@ -33,7 +33,6 @@ class Scope
 {
   public:
     Hashtable<Node*> *table;
-    Hashtable<Decl*> *table2;
     Node *backPointer;
     Scope(Node *me);
 };

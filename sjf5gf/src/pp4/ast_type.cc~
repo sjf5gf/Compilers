@@ -39,6 +39,7 @@ void Type::BuildChildren() {
 NamedType::NamedType(Identifier *i) : Type(*i->GetLocation()) {
     Assert(i != NULL);
     (id=i)->SetParent(this);
+    //Hashtable<Type*> *typesTable = new Hashtable<Type*>;
 } 
 
 void NamedType::PrintChildren(int indentLevel) {
