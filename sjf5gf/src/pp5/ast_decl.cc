@@ -1,0 +1,87 @@
+/* File: ast_decl.cc
+ * -----------------
+ * Implementation of Decl node classes.
+ */
+#include "ast_decl.h"
+#include "ast_type.h"
+#include "ast_stmt.h"
+#include <string>
+#include <cstring>
+#include <iostream>
+#include "list.h"
+using namespace std;        
+         
+Decl::Decl(Identifier *n) : Node(*n->GetLocation()) {
+    Assert(n != NULL);
+    (id=n)->SetParent(this); 
+}
+
+
+VarDecl::VarDecl(Identifier *n, Type *t) : Decl(n) {
+    Assert(n != NULL && t != NULL);
+    (type=t)->SetParent(this);
+}
+
+void VarDecl::Emit() {
+
+}  
+
+ClassDecl::ClassDecl(Identifier *n, NamedType *ex, List<NamedType*> *imp, List<Decl*> *m) : Decl(n) {
+    // extends can be NULL, impl & mem may be empty lists but cannot be NULL
+    Assert(n != NULL && imp != NULL && m != NULL);     
+    extends = ex;
+    if (extends) extends->SetParent(this);
+    (implements=imp)->SetParentAll(this);
+    (members=m)->SetParentAll(this);
+}
+
+void ClassDecl::Emit() {
+	List<const char*> *memName = NULL;
+	for(int i = 0; i < this->members->NumElements(); i++) {
+		this->members->Nth(i)->Emit();
+		memName->Append(this->members->Nth(i)->id->name);
+	}
+	me->GenVTable(this->id->name, memName);
+}
+
+const char * ClassDecl::getClassName() {
+	string temp (this->id->name);
+	temp.append("_");
+	char *cname = new char [temp.length() +1];
+	strcpy(cname, temp.c_str());
+	return cname;
+}
+
+InterfaceDecl::InterfaceDecl(Identifier *n, List<Decl*> *m) : Decl(n) {
+    Assert(n != NULL && m != NULL);
+    (members=m)->SetParentAll(this);
+}
+
+	
+FnDecl::FnDecl(Identifier *n, Type *r, List<VarDecl*> *d) : Decl(n) {
+    Assert(n != NULL && r!= NULL && d != NULL);
+    (returnType=r)->SetParent(this);
+    (formals=d)->SetParentAll(this);
+    body = NULL;
+    frameSize = 0;
+}
+
+void FnDecl::SetFunctionBody(Stmt *b) { 
+    (body=b)->SetParent(this);
+}
+
+void FnDecl::Emit() {
+    string name (this->id->name);
+    string main ("main");
+    char *cname = new char [name.length() +1];
+    if(name.compare(main) == 0) me->GenLabel("main");
+    else if(this->GetParent()->GetParent() == NULL) me->GenLabel(strcpy(cname, name.insert(0, "_").c_str()));
+    else me->GenLabel(strcpy(cname, name.insert(0, this->GetParent()->getClassName()).c_str()));
+    BeginFunc *myFunc = me->GenBeginFunc();
+    this->body->Emit();
+    myFunc->SetFrameSize(0); //needs some work
+    me->GenEndFunc();
+}
+
+
+
